@@ -5,27 +5,39 @@ on:
 
 jobs:
   e2e:
+    name: run postman collection
     runs-on: ubuntu-latest
-
-    container: node:14-alpine
-
-    services:
-      mongo:
-        image: mongo
-        env:
-          MONGO_INITDB_DATABASE: hexagonal-blog
-        ports:
-          - 27017/tcp
-
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.10.0'
 
-      - name: Run Server and Test with Newman
-        run: npm run start & npm run test:postman:headless
+      - name: Install newman
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-htmlextra
+          npm install express
+
+      - name: Start server
+        if: always()
+        id: server
         env:
-          MONGO_URL: mongodb://mongo:${{ job.services.mongodb.ports[27017] }}/hexagonal-blog
-          HOST_URL: http://localhost
-          PORT: 3000
+         PID : "pid"
+        run: |
+         echo "Starting up node js server"
+         node index.js &
+         echo " $PID=\":$!\" " >> $GITHUB_ENV
+
+      - name: Test
+        run: |
+          echo $PID " 1"
+          echo echo ${{ env.PID }} " 2"
+          echo ${{ steps.server.outputs.PID }} " 3"
+          echo ${{ env.PID }} " 4"
+
+      - name: Kill the node instance
+        run: |
+          kill -9 ${{ env.PID }}
