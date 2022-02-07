@@ -27,15 +27,12 @@ jobs:
         run: |
          echo "Starting up node js server"
          node index.js &
-         echo " $PID=`:$!` " >> $GITHUB_ENV
-
-      - name: Test
-        run: |
-          echo $PID " 1"
-          echo echo ${{ env.PID }} " 2"
-          echo ${{ steps.server.outputs.PID }} " 3"
-          echo ${{ env.PID }} " 4"
+         echo ":$!"
 
       - name: Kill the node instance
         run: |
           pkill -f node
+          
+      - name: Test
+        run: |
+          node -version     
