@@ -24,8 +24,6 @@ jobs:
       - name: Start server
         if: always()
         id: server
-        env:
-         PID : "pid"
         run: |
          echo "Starting up node js server"
          node index.js &
