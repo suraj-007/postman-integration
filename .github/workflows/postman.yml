@@ -40,4 +40,4 @@ jobs:
 
       - name: Kill the node instance
         run: |
-          kill -9 ${{ env.PID }}
+          pkill -f node
