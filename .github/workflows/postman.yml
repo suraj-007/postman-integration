@@ -31,7 +31,7 @@ jobs:
 
       - name: Kill the node instance
         run: |
-          pkill -f node
+          kill -9 $(ps aux | grep '\snode\s' | awk '{print $2}')
           
       - name: Test
         run: |
