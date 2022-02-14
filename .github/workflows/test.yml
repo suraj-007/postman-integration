@@ -1,0 +1,19 @@
+name: Workflow test
+
+on:
+  push
+
+jobs:
+  FailJobIssueDemo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step going to pass
+        run: echo Passing step
+      
+#       - name: Step is going to fail
+#         run: exit 1
+      
+      - name: Step to run on failure
+        run: echo failure step
+#         if: ${{ failure() }}
+#         run: echo failure step
