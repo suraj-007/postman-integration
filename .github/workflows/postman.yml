@@ -35,10 +35,4 @@ jobs:
           
       - name: Test
         run: |
-          ps -ef | grep node   
-      
-      - name: Curl 
-        run: >
-          curl \
-          -H "Accept: application/vnd.github.v3+json" \
-          http://localhost:8080/
+          ps -ef | grep node 
