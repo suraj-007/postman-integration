@@ -10,9 +10,9 @@ jobs:
       - name: Step going to pass
         run: echo Passing step
       
-      - name: Step is going to fail
-        run: exit 1
+#       - name: Step is going to fail
+#         run: exit 1
       
       - name: Step to run on failure
-#         if: ${{ failure() }}
+        if: ${{ failure() }}
         run: echo failure step
