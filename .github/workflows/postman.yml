@@ -36,3 +36,6 @@ jobs:
       - name: Test
         run: |
           ps -ef | grep node 
+      
+      - name: Step is going to fail
+        run: exit 1 
