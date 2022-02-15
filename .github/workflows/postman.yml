@@ -37,5 +37,9 @@ jobs:
         run: |
           ps -ef | grep node 
       
-      - name: Step is going to fail
-        run: exit 1 
+      - name: PWD
+        run: |
+          echo $pwd
+          echo "pwd : $pwd"
+          echo "root : $ROOT"
+          echo "home : $HOME"
