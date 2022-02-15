@@ -1,10 +1,7 @@
 name: Workflow test
 
 on:
-  workflow_run: 
-    workflows: ["Acceptance Tests"]
-    types:
-      - completed
+  workflow_dispatch
 
 jobs:
   FailJobIssueDemo:
