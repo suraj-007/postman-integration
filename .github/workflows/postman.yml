@@ -12,7 +12,8 @@ jobs:
       
       - name: PWD
         run: |
-          cd ls
+          cd ./test
+          ls
           echo $pwd
           echo "pwd : $pwd"
           echo "root : $ROOT"
