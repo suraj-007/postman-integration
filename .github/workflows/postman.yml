@@ -9,37 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Install Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.10.0'
-
-      - name: Install newman
-        run: |
-          npm install -g newman
-          npm install -g newman-reporter-htmlextra
-          npm install express
-
-      - name: Start server
-        if: always()
-        id: server
-        run: |
-         echo "Starting up node js server"
-         node index.js &
-         echo ":$!"
-
-      - name: Kill the node instance
-        run: |
-          pkill -f node
-          
-      - name: Test
-        run: |
-          ps -ef | grep node 
       
       - name: PWD
         run: |
+          cd ./test
           echo $pwd
           echo "pwd : $pwd"
           echo "root : $ROOT"
           echo "home : $HOME"
+          
